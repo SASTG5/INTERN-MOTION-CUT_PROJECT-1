@@ -76,6 +76,8 @@ def disp_res():
     check_ans()
     mb.showinfo(title='result',message=('RESULT: '+str(user_score.get())+
                                         '\n\nCorrect: '+str(correct)+'\nWrong: '+str(tot-correct)))
+    if user_score.get()==tot:
+        mb.showinfo(title='congratulations',message=('CONGRATULATIONS\n You got a full Score'))
     
 
 def disp_correct():
@@ -95,11 +97,11 @@ def disp_correct():
     crt_ans=ans[current_question-1]
     
     if temp_ans==crt_ans:
-        crt=('Correct answer\n'+(crt_ans))
+        crt=('!!WELL DONE!!\n\nCorrect answer\n'+(crt_ans))
         Label(win3,text=crt ,width=52,font=("ariel",10," bold"),relief=FLAT,padx=10, 
           pady=9,bg='gold',borderwidth=0).place(x=98,y=ypos+40)
     else:
-        wrg=('\nWRONG ANSWER\n\nCorrect answer\n'+(crt_ans))
+        wrg=('??DID U KNOW??\n\nWRONG ANSWER\n\nCorrect answer\n'+(crt_ans))
         Label(win3,text=wrg ,width=52,font=("ariel",10," bold"),relief=FLAT,padx=10, 
           pady=9,bg='gold',borderwidth=0).place(x=98,y=ypos+40)
     win3.after(3000,lambda:win3.destroy())
@@ -184,6 +186,10 @@ if __name__ == "__main__":
 
     back_main=Label(f,image=bg_main,compound=CENTER)
     back_main.place(x=0,y=0)
+
+    title=Label(win,text='by SASHANG UMANATH S',width=52,font=("ariel",10," bold"),relief=FLAT,padx=10, 
+          pady=9,bg='blue',fg='white',borderwidth=0)
+    title.place(x=98,y=28)
 
     start_button=Button(f, text="Start",command=start_quiz,relief=RIDGE,width=4,
                       height=1,bg="blue",fg="white",font=("ariel",10,"bold"))

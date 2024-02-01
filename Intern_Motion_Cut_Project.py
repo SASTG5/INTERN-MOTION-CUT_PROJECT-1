@@ -1,20 +1,24 @@
+#by SASHANG UMANATH S
+#on 1.2.2024
+#for MOTION CUT INTERN
+####################################################   QUIZ APP(TKINTER)   #########################################################
 
+#####################################################      code start     ###########################################################
 from tkinter import *
 from tkinter import messagebox as mb
 from PIL import ImageTk
 from PIL import Image
 
-
-
-#canvas=Canvas(win,width=632,height=360).pack()
+#define question dictionary
 question = {
     "2+3": ['2', '3', '5', '9'],
     "2-1": ['2', '1', '5','0'],
     "3+3": ['3', '6', '9', '7']
 }
-
 qn=list(question.keys())
 tot=len(question)
+
+#define answer list
 global ans 
 ans= ['5', '1', '6']
  
@@ -23,18 +27,13 @@ current_question=0
 correct=0
 wrong=0
 
-
-
-#def btn_click():
-#    mb.showinfo(title='click',message='btn clicked')
-
+#start app
 def start_quiz():
     start_button.forget()
-    #clear_frame()
     q_screen()
     next_qn()
     
-    
+#display question    
 def disp_qn():
     ques=('Question '+str(current_question+1)+':'+( qn[current_question]))
     Label(win,text= ques,width=42,font=("ariel",12," bold"),relief=FLAT,padx=10, 
@@ -62,7 +61,7 @@ def next_qn():
         if x==tot-1:
             nxt_button.destroy()
         
-
+#for checking answer
 def check_ans():
     global user_score,correct
     temp_ans = user_ans.get()
@@ -70,19 +69,14 @@ def check_ans():
     if (temp_ans != 'None' and temp_ans ==crt_ans):
         user_score.set(user_score.get()+1)
         correct+=1
-    
-    
 
+#display result window
 def disp_res():
     global correct,wrong
     check_ans()
     mb.showinfo(title='result',message=('RESULT: '+str(user_score.get())+
                                         '\n\nCorrect: '+str(correct)+'\nWrong: '+str(tot-correct)))
     
-
-def clear_frame(container):
-    for widget in container.winfo_children():
-        widget.destroy()
 
 def disp_correct():
     win3=Tk()
@@ -110,7 +104,7 @@ def disp_correct():
           pady=9,bg='gold',borderwidth=0).place(x=98,y=ypos+40)
     win3.after(3000,lambda:win3.destroy())
 
-    
+##display question screen after start    
 def q_screen():
     back=Label(win,image=bg,compound=CENTER)
     back.place(x=0,y=0)
@@ -121,7 +115,6 @@ def q_screen():
     radio_button_c()
     radio_button_d()
     
-
     win.wm_attributes('-transparentcolor')
     
     nxt_button=Button(win, text="Next",command=lambda:[disp_correct(),next_qn()],relief=RIDGE,width=4,
@@ -136,7 +129,7 @@ def q_screen():
                          fg='white',width=5,font=("ariel",10,"bold"))
     submit_button.place(x=560,y=320)
     
-
+#defining option buttons a,b,c,d
 def radio_button_a():
     c_question = list(question.keys())[current_question]
     op=question[c_question]  
@@ -165,8 +158,11 @@ def radio_button_d():
     radio_btn =  Radiobutton(win, padx=28,bg='gold',fg='black',font=("ariel",10,"bold"),
                              width=10,text=op[3],variable=user_ans,value=op[3],indicator=0)
     radio_btn.place(x = 400, y = 265)
+#defing option buttons end
 
+#designing gui
 if __name__ == "__main__":
+    #setup main window
     win=Tk()
     win.title('window')
     win.geometry('632x360')
@@ -188,16 +184,14 @@ if __name__ == "__main__":
 
     back_main=Label(f,image=bg_main,compound=CENTER)
     back_main.place(x=0,y=0)
-    #open=Label(win,text="START QUIZ",font=("ariel",10," bold"),relief=FLAT,padx=10, 
-    #  pady=9,bg='gold',borderwidth=0)
-    #open.place(x=296,y=35)
+    
     title=Label(win,text="QUIZ",font=("ariel",10," bold"),relief=FLAT,padx=10, 
-      pady=9,bg='gold',borderwidth=0)
+      pady=9,bg='blue',borderwidth=0)
     title.place(x=296,y=35)
 
     start_button=Button(f, text="Start",command=start_quiz,relief=RIDGE,width=4,
                       height=1,bg="blue",fg="white",font=("ariel",10,"bold"))
-    start_button.place(x=296,y=280)
+    start_button.place(x=296,y=290)
 
     user_ans = StringVar()
     user_ans.set('')
@@ -206,3 +200,4 @@ if __name__ == "__main__":
     print(user_score.get())
  
     win.mainloop()
+#####################################################     code end     ###########################################################

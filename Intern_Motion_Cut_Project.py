@@ -11,16 +11,16 @@ from PIL import Image
 
 #define question dictionary
 question = {
-    "2+3": ['2', '3', '5', '9'],
-    "2-1": ['2', '1', '5','0'],
-    "3+3": ['3', '6', '9', '7']
+    "Which is the Capital City of Andhra Pradesh": ['Sriram City', 'Hyderabad', 'Vishakapthinam', 'Amaravati'],
+    "How many Lok Sabha seats in India": ['345', '124', '543','534'],
+    "Which is parent comany of Google": ['Abcde', 'Meta', 'Cadabra', 'Alphabet']
 }
 qn=list(question.keys())
 tot=len(question)
 
 #define answer list
 global ans 
-ans= ['5', '1', '6']
+ans= ['Amaravati', '543', 'Alphabet']
  
 global current_question
 current_question=0
@@ -116,16 +116,16 @@ def q_screen():
     radio_button_d()
     
     win.wm_attributes('-transparentcolor')
-    
+    #next button
     nxt_button=Button(win, text="Next",command=lambda:[disp_correct(),next_qn()],relief=RIDGE,width=4,
                       height=1,bg="blue",fg="white",font=("ariel",10,"bold"))
     nxt_button.place(x=296,y=320)
-   
+    #quit button
     quit_button = Button(win, text="Quit", command=win.destroy,width=4,bg="blue", 
                          fg="white",font=("ariel",10," bold"))
     quit_button.place(x=30,y=320)
-    
-    submit_button=Button(win,text='Submit',command=disp_res,relief=RIDGE,bg='blue',
+    #submit button
+    submit_button=Button(win,text='Submit',command=lambda:[disp_res(),win.after(2000,lambda:win.destroy())],relief=RIDGE,bg='blue',
                          fg='white',width=5,font=("ariel",10,"bold"))
     submit_button.place(x=560,y=320)
     
@@ -184,10 +184,6 @@ if __name__ == "__main__":
 
     back_main=Label(f,image=bg_main,compound=CENTER)
     back_main.place(x=0,y=0)
-    
-    title=Label(win,text="QUIZ",font=("ariel",10," bold"),relief=FLAT,padx=10, 
-      pady=9,bg='blue',borderwidth=0)
-    title.place(x=296,y=35)
 
     start_button=Button(f, text="Start",command=start_quiz,relief=RIDGE,width=4,
                       height=1,bg="blue",fg="white",font=("ariel",10,"bold"))
